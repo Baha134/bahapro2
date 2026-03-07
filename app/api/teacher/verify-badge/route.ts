@@ -16,9 +16,7 @@ export async function POST(request: Request) {
         const { data, error } = await supabase
             .from('user_badges')
             .update({
-                verified: verified,
-                verified_by: user.id,
-                verified_at: new Date().toISOString()
+                verified: verified
             })
             .eq('id', badgeId)
             .select()
@@ -28,7 +26,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: error.message }, { status: 500 })
         }
 
-        return NextResponse.json(data)
+        return NextResponse.json({ success: true, data })
     } catch (error) {
         console.error('Error:', error)
         return NextResponse.json({ error: String(error) }, { status: 500 })

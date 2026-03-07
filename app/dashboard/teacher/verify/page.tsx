@@ -6,18 +6,18 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle, X, Loader } from 'lucide-react'
 
-interface Badge {
+interface BadgeItem {
     id: string
     user_id: string
     badge_id: string
     verified: boolean
     created_at: string
-    badges: {
+    badges?: {
         name: string
         description: string
         icon: string
     }
-    profiles: {
+    profiles?: {
         full_name: string
         email: string
         gpa: number
@@ -25,7 +25,7 @@ interface Badge {
 }
 
 export default function VerificationPage() {
-    const [badges, setBadges] = useState<Badge[]>([])
+    const [badges, setBadges] = useState<BadgeItem[]>([])
     const [loading, setLoading] = useState(true)
     const [filter, setFilter] = useState<'all' | 'pending' | 'verified'>('pending')
     const [processing, setProcessing] = useState<string | null>(null)
@@ -56,13 +56,21 @@ export default function VerificationPage() {
                 body: JSON.stringify({ badgeId, verified: approved })
             })
 
-            if (!response.ok) throw new Error('Error')
+            const data = await response.json()
+
+            if (!response.ok) {
+                console.error('Error response:', data)
+                alert(`Ошибка: ${data.error || 'Unknown error'}`)
+                return
+            }
 
             setBadges(badges.map(b =>
                 b.id === badgeId ? { ...b, verified: approved } : b
             ))
+            alert('✅ Навык ' + (approved ? 'одобрен' : 'отклонен'))
         } catch (error) {
             console.error('Error:', error)
+            alert('Ошибка при верификации: ' + error)
         } finally {
             setProcessing(null)
         }
@@ -131,18 +139,25 @@ export default function VerificationPage() {
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <p className="font-semibold text-foreground">{badge.profiles.full_name}</p>
-                                            <Badge variant="outline" className="text-xs">
-                                                GPA: {badge.profiles.gpa?.toFixed(2)}
-                                            </Badge>
+                                            <p className="font-semibold text-foreground">
+                                                {badge.profiles?.full_name || 'Unknown'}
+                                            </p>
+                                            {badge.profiles?.gpa && (
+                                                <Badge variant="outline" className="text-xs">
+                                                    GPA: {badge.profiles.gpa.toFixed(2)}
+                                                </Badge>
+                                            )}
                                         </div>
-                                        <p className="text-sm font-medium text-primary mb-1">{badge.badges.name}</p>
-                                        <p className="text-xs text-muted-foreground">{badge.badges.description}</p>
+                                        <p className="text-sm font-medium text-primary mb-1">
+                                            {badge.badges?.name || 'Badge'}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                            {badge.badges?.description || 'No description'}
+                                        </p>
                                         <p className="text-xs text-muted-foreground mt-2">
                                             Добавлено: {new Date(badge.created_at).toLocaleDateString('ru-RU')}
                                         </p>
                                     </div>
-
                                     <div className="flex gap-2">
                                         {badge.verified ? (
                                             <Badge className="bg-[#00B894]/10 text-[#00B894] border-[#00B894]/30 flex items-center gap-1">
