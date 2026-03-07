@@ -5,30 +5,22 @@ export async function POST(request: Request) {
         const body = await request.json()
         const { reportType, data } = body
 
-        let content = `Report Type: ${reportType}\n`
-        content += `Generated: ${new Date().toLocaleDateString("ru-RU")}\n\n`
-        content += `=== STATISTICS ===\n`
-        content += `Total Students: ${data?.students?.length ?? 0}\n`
-        content += `Average GPA: ${data?.avgGpa}\n`
-        content += `Deans List: ${data?.deansListCount ?? 0}\n`
-        content += `Ready for Internship: ${data?.internshipReady ?? 0}\n\n`
-        content += `=== SKILLS ===\n`
-        content += `Total Skills: ${data?.allSkills?.length ?? 0}\n`
-        content += `Total Badges: ${data?.allBadges?.length ?? 0}\n`
-        content += `Verified: ${data?.allBadges?.filter((b: any) => b.verified).length ?? 0}\n\n`
-        content += `=== TOP SKILLS ===\n`
-        
-        if (data?.topSkills && data.topSkills.length > 0) {
-            data.topSkills.forEach((skill: any, idx: number) => {
-                content += `${idx + 1}. ${skill[0]} - ${skill[1]} students\n`
-            })
-        }
+        const pdfContent = generateStyledPDF(reportType, data)
 
-        content += `\n=== RECOMMENDATIONS ===\n`
-        content += `Total: ${data?.recs?.length ?? 0}\n`
+        return new NextResponse(pdfContent, {
+            headers: {
+                "Content-Type": "application/pdf",
+                "Content-Disposition": `attachment; filename="report-${reportType}-${new Date().toISOString().split("T")[0]}.pdf"`,
+            },
+        })
+    } catch (error) {
+        console.error("Error:", error)
+        return NextResponse.json({ error: String(error) }, { status: 500 })
+    }
+}
 
-        // Простой PDF текстовый формат
-        const pdfContent = `%PDF-1.4
+function generateStyledPDF(reportType: string, data: any): any {
+    let pdfContent = `%PDF-1.4
 1 0 obj
 << /Type /Catalog /Pages 2 0 R >>
 endobj
@@ -39,15 +31,147 @@ endobj
 << /Type /Page /Parent 2 0 R /Resources 4 0 R /MediaBox [0 0 612 792] /Contents 5 0 R >>
 endobj
 4 0 obj
-<< /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >>
+<< /Font 
+/F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+/F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+>>
+>>
 endobj
 5 0 obj
-<< /Length ${content.length + 100} >>
+<< /Length 2000 >>
 stream
 BT
-/F1 10 Tf
+/F2 24 Tf
 50 750 Td
-${content.split("\n").map((line, i) => `(${line.replace(/\(/g, "\\(").replace(/\)/g, "\\)")}) Tj\n0 -15 Td`).join("")}
+(PORTFOLIO REPORT) Tj
+ET
+BT
+/F1 10 Tf
+50 730 Td
+(${reportType.toUpperCase()} | ${new Date().toLocaleDateString('ru-RU')}) Tj
+ET
+q
+0.8 0.8 0.8 RG
+50 725 m
+562 725 l
+S
+Q
+`
+
+    if (reportType === 'students') {
+        pdfContent += `
+BT
+/F2 16 Tf
+50 700 Td
+(General Student Report) Tj
+ET
+BT
+/F1 11 Tf
+50 680 Td
+(Statistics:) Tj
+ET
+BT
+/F1 10 Tf
+70 665 Td
+(Total Students: ${data.students?.length ?? 0}) Tj
+ET
+BT
+/F1 10 Tf
+70 650 Td
+(Average GPA: ${data.avgGpa}) Tj
+ET
+BT
+/F1 10 Tf
+70 635 Td
+(Deans List: ${data.deansListCount ?? 0}) Tj
+ET
+BT
+/F1 10 Tf
+70 620 Td
+(Ready for Internship: ${data.internshipReady ?? 0}) Tj
+ET
+`
+    } else if (reportType === 'skills') {
+        pdfContent += `
+BT
+/F2 16 Tf
+50 700 Td
+(Skills Report) Tj
+ET
+BT
+/F1 11 Tf
+50 680 Td
+(Top Skills:) Tj
+ET
+`
+        let yPos = 665
+        data.topSkills?.slice(0, 10).forEach(([skill, count]: any, idx: number) => {
+            pdfContent += `BT
+/F1 10 Tf
+70 ${yPos} Td
+(${idx + 1}. ${skill} - ${count} students) Tj
+ET
+`
+            yPos -= 15
+        })
+    } else if (reportType === 'employment') {
+        const total = data.students?.length ?? 0
+        const ready = data.internshipReady ?? 0
+        const percent = total > 0 ? ((ready / total) * 100).toFixed(1) : '0'
+
+        pdfContent += `
+BT
+/F2 16 Tf
+50 700 Td
+(Employment Report) Tj
+ET
+BT
+/F1 11 Tf
+50 680 Td
+(Statistics:) Tj
+ET
+BT
+/F1 10 Tf
+70 665 Td
+(Total Students: ${total}) Tj
+ET
+BT
+/F1 10 Tf
+70 650 Td
+(Ready for Internship: ${ready}) Tj
+ET
+BT
+/F1 10 Tf
+70 635 Td
+(Percentage: ${percent}%) Tj
+ET
+`
+    } else if (reportType === 'recommendations') {
+        pdfContent += `
+BT
+/F2 16 Tf
+50 700 Td
+(Recommendations Report) Tj
+ET
+BT
+/F1 11 Tf
+50 680 Td
+(Statistics:) Tj
+ET
+BT
+/F1 10 Tf
+70 665 Td
+(Total Recommendations: ${data.recs?.length ?? 0}) Tj
+ET
+BT
+/F1 10 Tf
+70 650 Td
+(Verified: ${data.recs?.filter((r: any) => r.verified).length ?? 0}) Tj
+ET
+`
+    }
+
+    pdfContent += `
 ET
 endstream
 endobj
@@ -58,23 +182,12 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000206 00000 n 
-0000000284 00000 n 
+0000000340 00000 n 
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-${content.length + 400}
+2400
 %%EOF`
 
-        const pdfBuffer = Buffer.from(pdfContent, "utf8")
-
-        return new NextResponse(pdfBuffer, {
-            headers: {
-                "Content-Type": "application/pdf",
-                "Content-Disposition": `attachment; filename="report-${reportType}-${new Date().toISOString().split("T")[0]}.pdf"`,
-            },
-        })
-    } catch (error) {
-        console.error("Error:", error)
-        return NextResponse.json({ error: String(error) }, { status: 500 })
-    }
+    return Buffer.from(pdfContent, "utf8")
 }
