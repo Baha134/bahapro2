@@ -16,6 +16,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  TrendingUp,
+  MapPin,
   Zap
 } from 'lucide-react'
 import { useState } from 'react'
@@ -36,12 +38,15 @@ const studentNav: NavItem[] = [
   { label: 'Проекты', href: '/dashboard/student/projects', icon: FolderOpen },
   { label: 'Вакансии', href: '/dashboard/student/vacancies', icon: Search },
   { label: 'Достижения', href: '/dashboard/student/badges', icon: Award },
+  { label: 'Резюме', href: '/dashboard/student/resume', icon: FileText },
 ]
 
 const employerNav: NavItem[] = [
   { label: 'Обзор', href: '/dashboard/employer', icon: LayoutDashboard },
   { label: 'Поиск талантов', href: '/dashboard/employer/search', icon: Search },
   { label: 'Вакансии', href: '/dashboard/employer/vacancies', icon: Briefcase },
+  { label: 'Стажировки', href: '/dashboard/employer/internships', icon: Users },
+  { label: 'Аналитика', href: '/dashboard/employer/analytics', icon: TrendingUp },
 ]
 
 const teacherNav: NavItem[] = [
@@ -49,6 +54,8 @@ const teacherNav: NavItem[] = [
   { label: 'Верификация', href: '/dashboard/teacher/verify', icon: CheckCircle },
   { label: 'Студенты', href: '/dashboard/teacher/students', icon: Users },
   { label: 'Выпускники', href: '/dashboard/teacher/alumni', icon: Award },
+  { label: 'Отчёты PDF', href: '/dashboard/teacher/reports', icon: FileText },
+  { label: 'Карта Alumni', href: '/dashboard/teacher/map', icon: MapPin },
 ]
 
 export function DashboardSidebar({ role }: { role: 'student' | 'employer' | 'teacher' }) {
@@ -83,12 +90,12 @@ export function DashboardSidebar({ role }: { role: 'student' | 'employer' | 'tea
           "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg",
           roleGradient
         )}>
-          <span className="text-sm font-black text-white italic">BP</span>
+          <span className="text-sm font-black text-white">Ó</span>
         </div>
         {!collapsed && (
           <div className="flex flex-col">
-            <span className="text-sm font-black tracking-tighter text-white uppercase italic">BAHA<span className="opacity-50">PRO</span></span>
-            <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest leading-none">Career RPG</span>
+            <span className="text-sm font-black tracking-tight text-white">ÓRKEN</span>
+            <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest leading-none">Career Platform</span>
           </div>
         )}
       </div>

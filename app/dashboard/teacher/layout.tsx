@@ -8,6 +8,7 @@
 // для всех страниц внутри /dashboard/teacher.
 import { DashboardSidebar } from '@/components/dashboard/sidebar'
 
+
 export default function TeacherDashboardLayout({
     children,
 }: {

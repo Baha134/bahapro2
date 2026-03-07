@@ -1,0 +1,496 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Астана",
+                "name_en": "Astana",
+                "capital": true
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    71.4460,
+                    51.1801
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Акмолинская",
+                "region_id": "akmola"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            68.0,
+                            50.0
+                        ],
+                        [
+                            75.0,
+                            50.0
+                        ],
+                        [
+                            75.0,
+                            54.0
+                        ],
+                        [
+                            68.0,
+                            54.0
+                        ],
+                        [
+                            68.0,
+                            50.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Актюбинская",
+                "region_id": "aktobe"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            55.0,
+                            47.0
+                        ],
+                        [
+                            62.0,
+                            47.0
+                        ],
+                        [
+                            62.0,
+                            51.5
+                        ],
+                        [
+                            55.0,
+                            51.5
+                        ],
+                        [
+                            55.0,
+                            47.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Алматинская",
+                "region_id": "almaty_region"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            74.0,
+                            42.5
+                        ],
+                        [
+                            82.0,
+                            42.5
+                        ],
+                        [
+                            82.0,
+                            46.0
+                        ],
+                        [
+                            74.0,
+                            46.0
+                        ],
+                        [
+                            74.0,
+                            42.5
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Атырауская",
+                "region_id": "atyrau"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            49.0,
+                            46.0
+                        ],
+                        [
+                            54.0,
+                            46.0
+                        ],
+                        [
+                            54.0,
+                            49.0
+                        ],
+                        [
+                            49.0,
+                            49.0
+                        ],
+                        [
+                            49.0,
+                            46.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "ВКО",
+                "region_id": "vko"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            79.0,
+                            47.0
+                        ],
+                        [
+                            87.5,
+                            47.0
+                        ],
+                        [
+                            87.5,
+                            52.0
+                        ],
+                        [
+                            79.0,
+                            52.0
+                        ],
+                        [
+                            79.0,
+                            47.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Жамбылская",
+                "region_id": "jambyl"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            69.0,
+                            42.0
+                        ],
+                        [
+                            75.0,
+                            42.0
+                        ],
+                        [
+                            75.0,
+                            45.0
+                        ],
+                        [
+                            69.0,
+                            45.0
+                        ],
+                        [
+                            69.0,
+                            42.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "ЗКО",
+                "region_id": "zko"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            48.0,
+                            49.5
+                        ],
+                        [
+                            55.0,
+                            49.5
+                        ],
+                        [
+                            55.0,
+                            52.5
+                        ],
+                        [
+                            48.0,
+                            52.5
+                        ],
+                        [
+                            48.0,
+                            49.5
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Карагандинская",
+                "region_id": "karaganda"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            68.0,
+                            46.0
+                        ],
+                        [
+                            78.0,
+                            46.0
+                        ],
+                        [
+                            78.0,
+                            51.0
+                        ],
+                        [
+                            68.0,
+                            51.0
+                        ],
+                        [
+                            68.0,
+                            46.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Костанайская",
+                "region_id": "kostanay"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            61.0,
+                            51.0
+                        ],
+                        [
+                            68.0,
+                            51.0
+                        ],
+                        [
+                            68.0,
+                            55.5
+                        ],
+                        [
+                            61.0,
+                            55.5
+                        ],
+                        [
+                            61.0,
+                            51.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Кызылординская",
+                "region_id": "kyzylorda"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            60.0,
+                            43.5
+                        ],
+                        [
+                            68.0,
+                            43.5
+                        ],
+                        [
+                            68.0,
+                            47.5
+                        ],
+                        [
+                            60.0,
+                            47.5
+                        ],
+                        [
+                            60.0,
+                            43.5
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Мангистауская",
+                "region_id": "mangistau"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            50.0,
+                            43.0
+                        ],
+                        [
+                            56.5,
+                            43.0
+                        ],
+                        [
+                            56.5,
+                            46.5
+                        ],
+                        [
+                            50.0,
+                            46.5
+                        ],
+                        [
+                            50.0,
+                            43.0
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Павлодарская",
+                "region_id": "pavlodar"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            75.0,
+                            50.5
+                        ],
+                        [
+                            80.0,
+                            50.5
+                        ],
+                        [
+                            80.0,
+                            54.5
+                        ],
+                        [
+                            75.0,
+                            54.5
+                        ],
+                        [
+                            75.0,
+                            50.5
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "СКО",
+                "region_id": "sko"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.0,
+                            52.5
+                        ],
+                        [
+                            69.0,
+                            52.5
+                        ],
+                        [
+                            69.0,
+                            55.5
+                        ],
+                        [
+                            62.0,
+                            55.5
+                        ],
+                        [
+                            62.0,
+                            52.5
+                        ]
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Туркестанская",
+                "region_id": "turkestan"
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.0,
+                            40.5
+                        ],
+                        [
+                            70.0,
+                            40.5
+                        ],
+                        [
+                            70.0,
+                            44.0
+                        ],
+                        [
+                            62.0,
+                            44.0
+                        ],
+                        [
+                            62.0,
+                            40.5
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}

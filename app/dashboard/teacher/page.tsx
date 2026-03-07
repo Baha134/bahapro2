@@ -195,7 +195,7 @@ export default async function TeacherDashboardPage() {
                             {[
                                 { href: '/dashboard/teacher/verify', icon: BadgeCheck, label: 'Верифицировать навыки', color: 'text-[#00B894] bg-[#00B894]/10' },
                                 { href: '/dashboard/teacher/alumni', icon: GraduationCap, label: 'Карта выпускников', color: 'text-primary bg-primary/10' },
-                                { href: '/dashboard/teacher/verify', icon: BookOpen, label: 'Написать рекомендацию', color: 'text-[#F97316] bg-[#F97316]/10' },
+                                { href: '/dashboard/teacher/recommendations', icon: BookOpen, label: 'Написать рекомендацию', color: 'text-[#F97316] bg-[#F97316]/10' }, // ✅ Исправлено
                             ].map((action) => (
                                 <Link key={action.href} href={action.href}
                                     className="flex items-center gap-3 rounded-xl border border-border bg-secondary/30 p-3 transition-all hover:border-primary/30 hover:bg-primary/5">

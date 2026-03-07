@@ -8,7 +8,6 @@ import { ActivityTimeline } from '@/components/dashboard/student/activity-timeli
 import { RecommendationsFeed } from '@/components/dashboard/student/recommendations-feed'
 import { CareerForecast } from '@/components/dashboard/student/career-forecast'
 import { ResumeOptimizer } from '@/components/dashboard/student/resume-optimizer'
-import { ResumeGenerator } from '@/components/dashboard/student/resume-generator'
 import { ProfileQrCode } from '@/components/dashboard/student/profile-qr-code'
 
 export default async function StudentDashboardPage() {
@@ -98,14 +97,6 @@ export default async function StudentDashboardPage() {
         <ResumeOptimizer skills={skills ?? []} />
         <CareerForecast skills={skills ?? []} />
       </div>
-
-      <ResumeGenerator
-        profile={profile}
-        skills={skills ?? []}
-        achievements={badges ?? []}
-        recommendations={recommendations ?? []}
-        userEmail={user.email ?? ''}
-      />
 
     </div>
   )

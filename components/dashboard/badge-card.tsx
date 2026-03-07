@@ -34,7 +34,7 @@ const rarityStyles = {
 }
 
 export function BadgeCard({ name, description, icon, rarity, earned = false, className }: BadgeCardProps) {
-  const styles = rarityStyles[rarity]
+  const styles = rarityStyles[rarity] ?? rarityStyles['common']
 
   return (
     <div className={cn(

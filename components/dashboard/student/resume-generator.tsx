@@ -281,8 +281,8 @@ function ResumePageOne({ accent, templateId, fullName, email, profile, topSkills
                 <h2 className="mb-2 text-[10px] font-bold uppercase tracking-widest" style={{ color: accent }}>Verified Skills</h2>
                 {topSkills.length > 0 ? (
                     <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                        {topSkills.map((s) => (
-                            <div key={s.name} className="flex items-center gap-2">
+                        {topSkills.map((s, index) => (
+                            <div key={`skill-${index}-${s.name}`} className="flex items-center gap-2">
                                 <span className="flex-1 text-[10px] font-medium text-slate-700">{s.name}</span>
                                 <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-100">
                                     <div className="h-full rounded-full" style={{ width: `${s.level}%`, backgroundColor: accent }} />
